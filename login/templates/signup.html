@@ -55,11 +55,11 @@
     <h2>Sign up</h2>
     <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
   </div>
-
   <div class="row">
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Your address</h4>
-      <form class="needs-validation" novalidate>
+      <form method = "POST" action = "{% url 'signup'%}" class="needs-validation" novalidate>
+        {% csrf_token %}
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
@@ -92,19 +92,27 @@
 
         <div class="mb-3">
           <label for="email">Email </label>
-          <input type="email" class="form-control" id="email" placeholder="you@example.com">
+          <input type="email" name = "email" class="form-control" id="email" placeholder="you@example.com">
           <div class="invalid-feedback">
-            Please enter a valid email address for shipping updates.
+            Please enter a valid email address.
           </div>
         </div>
 
         <div class="mb-3">
-          <label for="address">Address <span class="text-muted">(Optional)</span></label>
-          <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+          <label for="password">Password </label>
+          <input type="password" name = "password" class="form-control" id="password" placeholder="password" required>
           <div class="invalid-feedback">
-            Please enter your address.
+            Please enter your password.
           </div>
         </div>
+
+        <div class="mb-3">
+            <label for="password">Confirm Password </label>
+            <input type="password2" name = "password2" class="form-control" id="password2" placeholder="Confirm password" required>
+            <div class="invalid-feedback">
+              Please confirm your password.
+            </div>
+          </div>
 
         <div class="row">
           <div class="col-md-5 mb-3">
@@ -142,7 +150,7 @@
         </div>
         <hr class="mb-4">
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Sign up</button>
+        <button type="submit">Sign up</button>
       </form>
     </div>
   </div>

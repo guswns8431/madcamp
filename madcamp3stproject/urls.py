@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import login.views
+import FightTogether.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',login.views.login,name="login"),
     path('signup/',login.views.signup,name="signup"),
+    path('home/',FightTogether.views.home,name="home"),
+    path('board/',FightTogether.views.board,name="board"),
+    path('newpost/',FightTogether.views.newpost,name="newpost"),
 ]
