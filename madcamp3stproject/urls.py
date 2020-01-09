@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+import FightTogether.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',FightTogether.views.login,name="login"),
+    path('home/',FightTogether.views.home,name="home"),
+    path('board/',FightTogether.views.board,name="board"),
+    path('newpost/',FightTogether.views.newpost,name="newpost"),
 ]
