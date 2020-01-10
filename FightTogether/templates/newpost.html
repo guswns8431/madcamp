@@ -1,1 +1,44 @@
-새글작성
+{% extends "base.html" %}
+
+{% block contents %}
+<main role="main" class="col-md-auto ml-sm-auto col-lg-10 px-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">새 싸움</h1>
+    </div>
+    <div class="container">
+        <table class="table table-bordered">
+            <tbody>
+                <form action="{% url 'create' %}" method="POST" encType="multiplart/form-data">
+                    {% csrf_token %}
+                    <tr>
+                        <th>제목: </th>
+                        <td><input type="text" placeholder="제목을 입력하세요. " name="title" class="form-control"/></td>
+                    </tr>
+                    <tr>
+                        <th>내용: </th>
+                        <td><textarea cols="10" rows = "20" placeholder="내용을 입력하세요. " name="body" class="form-control"></textarea></td>
+                    </tr>
+                    <tr>
+                        <th>비밀번호: </th>
+                        <td><input type="password" placeholder="비밀번호를 입력하세요" name = "password" class="form-control"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">게시물 올리기</button>
+                            <button type="reset" class="btn btn-sm btn-outline-secondary">전부 리셋</button>
+                            <a class="btn btn-sm btn-outline-secondary" href="{% url 'home' %}">홈으로 돌아가기</a>
+                        </td>
+                    </tr>
+                </form>
+            </tbody>
+        </table>
+        </div>
+  </main>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+        <script src="dashboard.js"></script>
+        {% endblock %}
+        </body>
+</html>

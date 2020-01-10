@@ -56,7 +56,7 @@ ROOT_URLCONF = 'madcamp3stproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['madcamp3stproject/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
