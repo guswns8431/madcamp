@@ -22,3 +22,6 @@ def create(request):
     blog.password = request.POST['password']
     blog.save()
     return redirect('home')
+def index(request):
+    user = User.get.objects()
+    return render(request,'home.html',{'User' : user})

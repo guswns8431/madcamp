@@ -26,4 +26,5 @@ urlpatterns = [
     path('board/',FightTogether.views.board,name="board"),
     path('newpost/',FightTogether.views.newpost,name="newpost"),
     path('create/',FightTogether.views.create, name="create"),
+    path('index/',FightTogether.views.index,name="index"),
 ]
