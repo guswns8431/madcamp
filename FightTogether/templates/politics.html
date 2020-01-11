@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+
+{% block contents %}
+
+{% for politics in posts %} 
+<!--card 형식을 위한 레이아웃-->
+<div class="container-fluid">
+  <div class="row">
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">{{politics.title}}</h1>
+      </div>
+      <div class="card" style="width: 100rem;">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">{{politics.pub_date}}</h6>
+                <p class="card-text">{{politics.summary}}</p>
+                <a href="{%url 'politics_detail' politics.id%}" class="card-link">응원하러 가기</a>
+            </div>
+        </div>
+    </main>
+  </div>
+</div>
+{%endfor%}
+<div class = "container">
+{%if posts.has_previous%}
+<a href="?page=1">First</a>
+<a href="?page={{posts.previous_page_number}}">Previous</a>
+{%endif%}
+<span>{{posts.number}}</span>
+<span>of</span>
+<span>{{posts.paginator.num_pages}}</span>
+
+{%if posts.has_next%}
+<a href="?page={{posts.next_page_number}}">Next</a>
+<a href="?page={{posts.paginator.num_pages}}">Last</a>
+{%endif%}
+</div>
+
+
+{% endblock %}

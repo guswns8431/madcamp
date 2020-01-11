@@ -20,14 +20,19 @@ import FightTogether.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('',login.views.login,name="login"),
     path('',FightTogether.views.index1,name="index1"),
     path('login/',login.views.login,name="login"),
     path('signup/',login.views.signup,name="signup"),
     path('home/',FightTogether.views.home,name="home"),
     path('board/',FightTogether.views.board,name="board"),
+    path('love/',FightTogether.views.love,name="love"),
+    path('incident/',FightTogether.views.incident,name="incident"),
+    path('politics/',FightTogether.views.politics,name="politics"),
     path('newpost/',FightTogether.views.newpost,name="newpost"),
     path('create/',FightTogether.views.create, name="create"),
     path('index/',FightTogether.views.index,name="index"),
     path('blog/<int:blog_id>',FightTogether.views.detail,name="detail"),
+    path('love/<int:love_id>',FightTogether.views.love_detail,name="love_detail"),
+    path('incident/<int:incident_id>',FightTogether.views.incident_detail,name="incident_detail"),
+    path('politics/<int:politics_id>',FightTogether.views.politics_detail,name="politics_detail"),
 ]
