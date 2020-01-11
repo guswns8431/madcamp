@@ -20,11 +20,14 @@ import FightTogether.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',login.views.login,name="login"),
+    #path('',login.views.login,name="login"),
+    path('',FightTogether.views.index1,name="index1"),
+    path('login/',login.views.login,name="login"),
     path('signup/',login.views.signup,name="signup"),
     path('home/',FightTogether.views.home,name="home"),
     path('board/',FightTogether.views.board,name="board"),
     path('newpost/',FightTogether.views.newpost,name="newpost"),
     path('create/',FightTogether.views.create, name="create"),
     path('index/',FightTogether.views.index,name="index"),
+    path('blog/<int:blog_id>',FightTogether.views.detail,name="detail"),
 ]
