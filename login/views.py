@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from FightTogether.models import Profile
 
 # Create your views here.
 def login(request):
@@ -24,6 +25,7 @@ def signup(request):
             except User.DoesNotExist:    
                 user = User.objects.create_user(
                 request.POST['username'], password = request.POST['password'])
+                Profile.objects.create(user = user, nickname = request.POST['firstName'])
                 auth.login(request,user)
                 return redirect('home')
         else:

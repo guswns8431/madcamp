@@ -1,5 +1,4 @@
-
-<!doctype html>
+{% comment %} <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -7,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>당신의 싸움을 응원합니다</title>
+    <title>쌈닭</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/sign-in/">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -28,6 +27,7 @@
 <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon.ico">
 <meta name="msapplication-config" content="/docs/4.4/assets/img/favicons/browserconfig.xml">
 <meta name="theme-color" content="#563d7c">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
 
     <style>
@@ -52,20 +52,53 @@
   <body class="text-center">
     <form method = "POST" action="{% url 'login' %}" class="form-signin">
         {% csrf_token %}
-  <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-  <h1 class="h3 mb-3 font-weight-normal">당신의 싸움을 응원합니다</h1>
+
+  <h1 class="h3 mb-3 font-weight-normal" style="font-family: 'Nanum Pen Script',cursive; font-size: 500; margin: 20px; ">
+    당신의 싸움을 응원합니다
+  </h1>
   <label for="inputText" class="sr-only">아이디</label>
-  <input type="text" name = "username" id="username" class="form-control" placeholder="아이디" required autofocus>
+  <input type="text" style="font-family: 'Nanum Pen Script',cursive; margin: 10px 500px 10px;font-size: 30px;" name = "username" id="username" class="form-control" placeholder="아이디" required>
   <label for="inputPassword" class="sr-only">비밀번호</label>
-  <input type="password" name = "password" id="inputPassword" class="form-control" placeholder="비밀번호" required>
+  <input type="password" style="font-family: 'Nanum Pen Script',cursive; margin: 10px 500px 10px;font-size: 30px;" name = "password" id="inputPassword" class="form-control" placeholder="비밀번호" required>
   <div class="checkbox mb-3">
     <label>
-      <input type="checkbox" value="remember-me"> 나중에 기억하기
+      <input type="checkbox" style="font-family: 'Nanum Pen Script',cursive;" value="remember-me"> 나중에 기억하기
     </label>
   </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">싸움터로</button>
-  <a href="{% url 'signup' %}">회원가입</a>
-  <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+  <button style="font-family: 'Nanum Pen Script',cursive; font-size: 30px; " class="btn btn-lg btn-primary btn-block" type="submit">싸움터로</button>
+  <a style="font-family: 'Nanum Pen Script',cursive; font-size: 30px;" href="{% url 'signup' %}">회원가입</a>
+  <p style="font-family: 'Nanum Pen Script',cursive; font-size: 20px;" class="mt-5 mb-3 text-muted">&copy; 2020 Ssamdak</p>
 </form>
 </body>
+</html> {% endcomment %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+        <link rel="stylesheet" href="{% static 'login_style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    </head>
+    <body>
+        <header>
+        <div class="wrapper">
+            <div class="logo">
+                <img src="{% static 'logo.png'%}" alt="로고">
+            </div>
+        </div>
+        
+        <form class="box" action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <div class="animated rotateInDownLeft">
+          <h1>당신을 응원합니다</h1>
+          <input type="text" name="username" id="username" placeholder="아이디" required>
+          <input type="password" name="password" id="inputPassword" placeholder="비밀번호" required>
+          <input type="submit" name="" value="싸움터로">
+          <a href="{% url 'signup' %}">회원가입</a>  
+          </div>  
+        </form>
+        
+    </body>
 </html>

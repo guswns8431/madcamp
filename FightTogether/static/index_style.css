@@ -18,6 +18,7 @@ header{
     width: 100px;
     float: left;
     height: auto;
+    opacity: 0.4;
 }
 .welcome-text{
     position: absolute;

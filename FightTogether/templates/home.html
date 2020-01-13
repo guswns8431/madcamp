@@ -4,4 +4,28 @@
 
 {% block contents %}
 <h1>금주의 싸움</h1>
+
+<body>
+    <fieldset>
+        <legend>
+            <b>
+                [오늘의 명언]
+            </b>
+        </legend>
+        <br>&nbsp;&nbsp;
+        <script language="JavaScript">
+            var day_msg = new Array(5);
+            day_msg[0] = "너 자신을 알라. <b>&nbsp; -소크라테스-</b>";
+            day_msg[1] = "인생의 위대한 목표는 지식이 아니라 행동이다. <b>&nbsp; -헉슬리-</b>";
+            day_msg[2] = "삶은 호흡하는 것이 아니라 행위를 하는 것이다. <b>&nbsp; -루소-</b>";
+            day_msg[3] = "우리의 인생은 우리가 노력한 만큼 가치가 있다. <b>&nbsp; -모리악-</b>";
+            day_msg[4] = "사랑하며 가난한 것이 애정없는 부유함보다 훨씬 낫다. <b>&nbsp; -ㅣ.모리스-</b>";
+
+            var random_num = Math.floor(Math.random()*5);
+            document.write(day_msg[random_num]);
+        
+        </script>
+        <br><br>
+    </fieldset>
+</body>
 {% endblock %}

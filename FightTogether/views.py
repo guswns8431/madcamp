@@ -1,11 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
+from django.contrib import auth
 from django.utils import timezone
 from .models import Blog
 from .models import Love
 from .models import Politics
 from .models import Incident
+from .models import Refute
+from .models import Profile
 from django.core.paginator import Paginator #페이지를 나누기 위해 선언
+from django.contrib.auth.decorators import login_required
+import random #난수생성
+import string
 # Create your views here.
 
 
@@ -25,11 +31,24 @@ def board(request):
     page = request.GET.get('page')
     #request되 페이지를 얻어온 뒤 return
     posts = paginator.get_page(page)
-    return render(request,'board.html',{'blogs' : blogs,'posts':posts})
+    
+
+    refutes = Refute.objects
+    refutes_list = Refute.objects.all()
+
+    return render(request,'board.html',{'blogs' : blogs,'posts':posts, 'refutes': refutes,'posts_refute' : refutes_list})
 
 def newpost(request):
-    return render(request,'newpost.html')
+    _LENGTH = 10
+    string_pool = string.ascii_letters
+    result = ""
+    for i in range(_LENGTH):
+        result += random.choice(string_pool)
+    return render(request,'newpost.html',{'result':result})
 
+def refute(request):
+    return render(request,'refute.html')
+    
 def love(request):
     loves = Love.objects
     loves_list = Love.objects.all()
@@ -80,7 +99,7 @@ def create(request):
         politics.password = request.POST['password']
         politics.save()
         return redirect('politics')
-    else:
+    elif(tmp == '4'):
         incident = Incident()
         incident.title = request.POST['title']
         incident.body = request.POST['body']
@@ -88,6 +107,14 @@ def create(request):
         incident.password = request.POST['password']
         incident.save()
         return redirect('incident')
+    else:
+        refute = Refute()
+        refute.title = request.POST['title']
+        refute.body = request.POST['body']
+        refute.pub_date = timezone.datetime.now()
+        refute.password = request.POST['password']
+        refute.save()
+        return redirect('home')
 
 
 
@@ -106,7 +133,8 @@ def index(request):
 
 def detail(request,blog_id):
     blog_detail = get_object_or_404(Blog,pk = blog_id)
-    return render(request,'detail.html',{'blog':blog_detail})
+    refutes_list = Refute.objects.all()
+    return render(request,'detail.html',{'blog':blog_detail, 'refute':refutes_list})
 
 def love_detail(request,love_id):
     love_detail = get_object_or_404(Love,pk = love_id)
@@ -120,3 +148,93 @@ def politics_detail(request,politics_id):
     politics_detail = get_object_or_404(Politics,pk = politics_id)
     return render(request,'politics_detail.html',{'politics':politics_detail})
 
+@login_required
+def post_like_toggle(request, blog_id):
+    post = get_object_or_404(Blog, id=blog_id)
+    user = request.user
+    profile = Profile.objects.get(user=user)
+
+    check_like_post = profile.like_posts.filter(id=blog_id)
+
+    if check_like_post.exists():
+        profile.like_posts.remove(post)
+        post.like_count -= 1
+        post.save()
+    else:
+        profile.like_posts.add(post)
+        post.like_count += 1
+        post.save()
+
+    return redirect('home')
+@login_required
+def post_like_toggle1(request, incident_id):
+    post = get_object_or_404(Incident, id=incident_id)
+    user = request.user
+    profile = Profile.objects.get(user=user)
+
+    check_like_post = profile.like_posts1.filter(id=incident_id)
+
+    if check_like_post.exists():
+        profile.like_posts1.remove(post)
+        post.like_count -= 1
+        post.save()
+    else:
+        profile.like_posts1.add(post)
+        post.like_count += 1
+        post.save()
+
+    return redirect('home')
+@login_required
+def post_like_toggle2(request, love_id):
+    post = get_object_or_404(Love, id=love_id)
+    user = request.user
+    profile = Profile.objects.get(user=user)
+
+    check_like_post = profile.like_posts2.filter(id=love_id)
+
+    if check_like_post.exists():
+        profile.like_posts2.remove(post)
+        post.like_count -= 1
+        post.save()
+    else:
+        profile.like_posts2.add(post)
+        post.like_count += 1
+        post.save()
+
+    return redirect('home')
+@login_required
+def post_like_toggle3(request, politics_id):
+    post = get_object_or_404(Politics, id=politics_id)
+    user = request.user
+    profile = Profile.objects.get(user=user)
+
+    check_like_post = profile.like_posts3.filter(id=politics_id)
+
+    if check_like_post.exists():
+        profile.like_posts3.remove(post)
+        post.like_count -= 1
+        post.save()
+    else:
+        profile.like_posts3.add(post)
+        post.like_count += 1
+        post.save()
+
+    return redirect('home')
+@login_required
+def post_like_toggle_refute(request, refute_id):
+    post = get_object_or_404(Politics, id=refute_id)
+    user = request.user
+    profile = Profile.objects.get(user=user)
+
+    check_like_post = profile.like_posts_refute.filter(id=refute_id)
+
+    if check_like_post.exists():
+        profile.like_posts_refute.remove(post)
+        post.like_count -= 1
+        post.save()
+    else:
+        profile.like_posts_refute.add(post)
+        post.like_count += 1
+        post.save()
+
+    return redirect('home')

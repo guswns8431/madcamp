@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>당신의 싸움을 응원합니다</title>
     <link rel="stylesheet" href="{% static 'index_style.css' %}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 </head>
 <body>
     <header>
@@ -17,8 +17,12 @@
     </div>
     
     <div class="welcome-text">
-        <h1>전 국민이 당신의<br> 싸움을 응원합니다</h1>
-        <a href="{% url 'login' %}">싸움구경</a>
+        <div class="animated rotateInDownLeft">
+        <h1>전 국민의 싸움에<br> 당신을 초대합니다</h1>
+        <a href="{% url 'login' %}">입장하기</a>
+        </div>
+        
+        
     </div>
     </header>
 </body>

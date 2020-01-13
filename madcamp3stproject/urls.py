@@ -35,4 +35,11 @@ urlpatterns = [
     path('love/<int:love_id>',FightTogether.views.love_detail,name="love_detail"),
     path('incident/<int:incident_id>',FightTogether.views.incident_detail,name="incident_detail"),
     path('politics/<int:politics_id>',FightTogether.views.politics_detail,name="politics_detail"),
+    path('refute/',FightTogether.views.refute,name="refute"),
+    path('blog/like/<int:blog_id>', FightTogether.views.post_like_toggle, name="post_like_toggle"),
+    path('incident/like/<int:incident_id>', FightTogether.views.post_like_toggle1, name="post_like_toggle1"),
+    path('love/like/<int:love_id>', FightTogether.views.post_like_toggle2, name="post_like_toggle2"),
+    path('politics/like/<int:politics_id>', FightTogether.views.post_like_toggle3, name="post_like_toggle3"),
+    path('refute/like/<int:refute_id>', FightTogether.views.post_like_toggle_refute, name="post_like_toggle_refute"),
+    
 ]

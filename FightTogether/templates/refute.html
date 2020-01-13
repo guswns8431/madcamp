@@ -3,7 +3,7 @@
 {% block contents %}
 <main role="main" class="col-md-auto ml-sm-auto col-lg-10 px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">새 싸움</h1>
+      <h1 class="h2">반박하기</h1>
     </div>
     <div class="container">
         <table class="table table-bordered">
@@ -19,7 +19,8 @@
                             <td><input type="radio" name="category" value="1"/>일상/잡담  
                                 <input type="radio" name="category" value="2"/>연애  
                                 <input type="radio" name="category" value="3"/>정치/사회  
-                                <input type="radio" name="category" value="4"/>사건/사고  
+                                <input type="radio" name="category" value="4"/>사건/사고 
+                                <input type="radio" name="category" value="5"/>반박하기
                             </td>
                     </tr>
                     <tr>
@@ -28,13 +29,11 @@
                     </tr>
                     <tr>
                         <th>코드: </th>
-                        <td><input type="text" value= {{result}} name = "password" class="form-control"/></td>
+                        <td><input type="text" placeholder="코드를 입력하세요" name = "password" class="form-control"/></td>
                     </tr>
-                    
-
                     <tr>
                         <td colspan="2">
-                            <button type="submit" class="btn btn-sm btn-outline-secondary">게시물 올리기</button>
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">반박글 올리기</button>
                             <button type="reset" class="btn btn-sm btn-outline-secondary">전부 리셋</button>
                             <a class="btn btn-sm btn-outline-secondary" href="{% url 'home' %}">홈으로 돌아가기</a>
                         </td>
