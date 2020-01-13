@@ -4,8 +4,38 @@
 
 {% block contents %}
 <h1>금주의 싸움</h1>
-
-
+{% for blog in blog_title%}
+<div>{{blog}}</div>
+{% endfor%}
+<p>이름</p>
+{% for blogcount in blog_count%}
+<div>{{blogcount}}</div>
+{% endfor%}
+<p>숫자</p>
+{% for love in love_title%}
+<div>{{love}}</div>
+{% endfor%}
+<p>이름</p>
+{% for lovecount in love_count%}
+<div>{{lovecount}}</div>
+{% endfor%}
+<p>숫자</p>
+{% for incident in incident_title%}
+<div>{{incident}}</div>
+{% endfor%}
+<p>이름</p>
+{% for incount in incident_count%}
+<div>{{incount}}</div>
+{% endfor%}
+<p>숫자</p>
+{% for politic in politic_title%}
+<div>{{politic}}</div>
+{% endfor%}
+<p>이름</p>
+{% for polcount in politic_count%}
+<div>{{polcount}}</div>
+{% endfor%}
+<p>숫자</p>
 
 <body>
     <fieldset>

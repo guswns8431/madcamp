@@ -16,7 +16,40 @@ import string
 
 
 def home(request):
-    return render(request,'home.html')
+    blogs = Blog.objects.all()
+    refutes = Refute.objects.all()
+    loves = Love.objects.all()
+    incidents = Incident.objects.all()
+    politics = Politics.objects.all()
+    blog_title =[]
+    love_title = []
+    incident_title = []
+    politic_title = []
+    blog_count =[]
+    love_count = []
+    incident_count = []
+    politic_count = []
+    for blog in blogs:
+        for refute in refutes:
+            if refute.password == blog.password:
+                blog_title.append(blog.title)
+                blog_count.append(blog.like_count + refute.like_count)
+    for love in loves:
+        for refute in refutes:
+            if refute.password == love.password:
+                blog_title.append(love.title)
+                blog_count.append(love.like_count + refute.like_count)
+    for incident in incidents:
+        for refute in refutes:
+            if refute.password == incident.password:
+                blog_title.append(incident.title)
+                blog_count.append(incident.like_count + refute.like_count)
+    for politic in politics:
+        for refute in refutes:
+            if refute.password == politic.password:
+                blog_title.append(politic.title)
+                blog_count.append(politic.like_count + refute.like_count)
+    return render(request,'home.html', {'blog_title':blog_title, 'love_title':love_title,'incident_title':incident_title,'politic_title':politic_title, 'blog_count':blog_count,'love_count':love_count,'incident_count':incident_count,'politic_count':politic_count})
 
 def index1(request): #맨처음 화면 띄워줌
     return render(request,'index1.html')
@@ -222,7 +255,7 @@ def post_like_toggle3(request, politics_id):
     return redirect('home')
 @login_required
 def post_like_toggle_refute(request, refute_id):
-    post = get_object_or_404(Politics, id=refute_id)
+    post = get_object_or_404(Refute, id=refute_id)
     user = request.user
     profile = Profile.objects.get(user=user)
 

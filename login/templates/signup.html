@@ -1,4 +1,4 @@
-
+{% comment %} 
 <!doctype html>
 <html lang="en">
   <head>
@@ -167,4 +167,37 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
         <script src="form-validation.js"></script></body>
+</html> {% endcomment %}
+
+{% load static %}
+<!doctype html>
+<head></head>
+  <meta charset="UTF-8">
+  <title>쌈닭 - 당신의 싸움을 응원합니다</title>
+  <link rel="stylesheet" href="{% static 'login_style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+</head>
+<body>
+  <header>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="{% static 'logo.png'%}" alt="로고">
+        </div>
+    </div>
+    </header>
+    <form class="box" action="{% url 'signup' %}" method="POST">
+      {% csrf_token %}
+      <div class="animated rotateInDownLeft">
+        <h1>응원에 동참하세요</h1>
+        <input type="text" name="firstName" id="firstName" placeholder="이름" required>
+        <input type="text" name="lastname" id="lastname" placeholder="성" required>
+        <input type="text" name="username" id="username" placeholder="아이디" required>
+        <input type="email" name = "email" id="email" placeholder="you@example.com" required>
+        <input type="password" name="password" id="password" placeholder="비밀번호" required>
+        <input type="password" name ="password2" id="password2" placeholder="비밀번호 확인" required>
+        <input type="submit" name="" value="가입하기">  
+      </div>  
+    </form>
+        
+    </body>
 </html>
