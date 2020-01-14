@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <title>쌈닭 - 당신의 싸움을 응원합니다</title>
     <link rel="stylesheet" href="{% static 'index_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   </head>
   <body>
 <header>
@@ -34,40 +35,47 @@
     </div>
     <div class="wrap">
 <h1>금주의 싸움</h1>
-
-<h1>일상/잡담</h1>
+<div class="animated fadeInDownBig">
+<h3>일상/잡담</h3>
 {% if blog_id != -1%}
 <a href="{%url 'detail' blog_id%}" class="btn btn-sm animated-button victoria-one">{{blog_title}}</a>
 {% else %}
 <a class="btn btn-sm animated-button victoria-one">{{blog_title}}</a>
 {% endif %}
+</div>
 
-
-
-<h1>연애</h1>
+<div class="animated fadeInLeftBig">
+<h3>연애</h3>
 {% if love_id != -1%}
 <a href="{%url 'love_detail' love_id%}" class="btn btn-sm animated-button victoria-one">{{love_title}}</a>
 {% else %}
 <a class="btn btn-sm animated-button victoria-one">{{love_title}}</a>
 {% endif %}
+</div>
 
+<div class="animated fadeInRightBig">
+<h3>정치와 사회</h3>
 
-<h1>정치와 사회</h1>
 {% if politic_id != -1%}
 <a href="{%url 'politics_detail' politic_id%}" class="btn btn-sm animated-button victoria-one">{{politic_title}}</a>
 {% else%}
 <a class="btn btn-sm animated-button victoria-one">{{politic_title}}</a>
 {% endif %}
+</div>
 
-<h1>사건/사고</h1>
+<div class="animated fadeInLeftBig">
+<h3>사건/사고</h3>
 {% if incident_id != -1%}
 <a href="{%url 'incident_detail' incident_id%}" class="btn btn-sm animated-button victoria-one">{{incident_title}}</a>
 {% else%}
 <a class="btn btn-sm animated-button victoria-one">{{incident_title}}</a>
 {% endif %}
+</div>
+<div class="animated fadeInRightBig">
 <a href="{%url 'donation' %}" class="btn btn-sm animated-button victoria-one" style="color:gold; border-color:gold"> $쌈닭에 1000원 후원하기$</a>
+</div>
 
-
+<div class="animated fadeInUpBig">
     <fieldset>
         <legend>
             <b>
@@ -77,7 +85,7 @@
         <br>&nbsp;&nbsp;
         <script language="JavaScript">
             var day_msg = new Array(21);
-            day_msg[0] = "용기란, 삶이 평화를 주는 대시 강요하는 대가이다. <b>&nbsp; -아멜리아 에어하트-</b>";
+            day_msg[0] = "용기란, 삶이 평화를 주는 대신 강요하는 대가이다. <b>&nbsp; -아멜리아 에어하트-</b>";
             day_msg[1] = "평화를 원하거든 전쟁을 대비하라. <b>&nbsp; -플라비우스 베게티우스 레나투스-</b>";
             day_msg[2] = "평화로울 때에는 조심스러움과 겸손함만큼 남자답게 만드는 것이 없다. <b>&nbsp; -윌리엄 셰익스피어-</b>";
             day_msg[3] = "전쟁은 평화의 문제로부터의 비겁한 도망이다. <b>&nbsp; -토마스 만-</b>";
@@ -105,6 +113,7 @@
         </script>
         <br><br>
     </fieldset>
+    </div>
     </div>
 </body>
 

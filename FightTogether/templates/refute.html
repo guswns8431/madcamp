@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% comment %} {% extends "base.html" %}
 
 {% block contents %}
 <main role="main" class="col-md-auto ml-sm-auto col-lg-10 px-4">
@@ -50,4 +50,34 @@
         <script src="dashboard.js"></script>
         {% endblock %}
         </body>
+</html> {% endcomment %}
+
+{% load static %}
+<!doctype html>
+<head></head>
+  <meta charset="UTF-8">
+  <title>쌈닭 - 당신의 싸움을 응원합니다</title>
+  <link rel="stylesheet" href="{% static 'login_style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+</head>
+<body>
+  <header>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="{% static 'logo.png'%}" alt="로고">
+        </div>
+    </div>
+  </header>
+  <form class = "box" action="{% url 'create' %}" method="POST" encType="multiplart/form-data">
+  {% csrf_token %}
+  <input type="text" placeholder="제목을 입력하세요. " name="title" class="form-control"/>
+ 
+    <input type="radio" name="category" value="5"/><span>반박하기</span><br>
+    <textarea cols="40" rows = "20" placeholder="내용을 입력하세요. " name="body" class="form-control"></textarea>
+    <input type="text" placeholder="코드를 입력하세요" name = "password" class="form-control"/>
+    <input type="submit" value = "게시물 올리기">
+    <input type="reset" value="전부 리셋">
+    <a class="btn btn-sm btn-outline-secondary" href="{% url 'home' %}">홈으로 돌아가기</a>
+</form>
+</body>
 </html>
