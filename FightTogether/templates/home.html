@@ -1,9 +1,39 @@
-{% extends "base.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
 
 
 
-{% block contents %}
-<h1>금주의 싸움</h1>
+{% comment %} {% block contents %} {% endcomment %}
+{% load static %}
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>쌈닭 - 당신의 싸움을 응원합니다</title>
+    <link rel="stylesheet" href="{% static 'index_style.css' %}">
+  </head>
+  <body>
+<header>
+
+
+<body>
+<div class="wrapper">
+        <div class="logo">
+            <img src="{% static 'logo.png'%}" alt="로고">
+        </div>
+        <ul class = "nav-area">
+          <li><a>{{user.username}}</a></li>
+          <li><a href="{%url 'login'%}">로그아웃</a>/li>
+          <li><a href="{%url 'home'%}">홈</a></li>
+          <li><a href="{%url 'board'%}">일상/잡담</a></li>
+          <li><a href="{%url 'love'%}">연애</a></li>
+          <li><a href="{%url 'politics'%}">정치와 사회</a></li>
+          <li><a href="{%url 'incident'%}">사건/사고</a></li>
+          <li><a href="{%url 'newpost'%}">싸우러가기</a></li>
+
+        </ul>
+    </div>
+    <div class="wrap">
+<h1>금주의 싸움 순위</h1>
 {% for blog in blog_title%}
 <div>{{blog}}</div>
 {% endfor%}
@@ -36,8 +66,6 @@
 <div>{{polcount}}</div>
 {% endfor%}
 <p>숫자</p>
-
-<body>
     <fieldset>
         <legend>
             <b>
@@ -46,20 +74,40 @@
         </legend>
         <br>&nbsp;&nbsp;
         <script language="JavaScript">
-            var day_msg = new Array(5);
-            day_msg[0] = "너 자신을 알라. <b>&nbsp; -소크라테스-</b>";
-            day_msg[1] = "인생의 위대한 목표는 지식이 아니라 행동이다. <b>&nbsp; -헉슬리-</b>";
-            day_msg[2] = "삶은 호흡하는 것이 아니라 행위를 하는 것이다. <b>&nbsp; -루소-</b>";
-            day_msg[3] = "우리의 인생은 우리가 노력한 만큼 가치가 있다. <b>&nbsp; -모리악-</b>";
-            day_msg[4] = "사랑하며 가난한 것이 애정없는 부유함보다 훨씬 낫다. <b>&nbsp; -ㅣ.모리스-</b>";
+            var day_msg = new Array(21);
+            day_msg[0] = "용기란, 삶이 평화를 주는 대시 강요하는 대가이다. <b>&nbsp; -아멜리아 에어하트-</b>";
+            day_msg[1] = "평화를 원하거든 전쟁을 대비하라. <b>&nbsp; -플라비우스 베게티우스 레나투스-</b>";
+            day_msg[2] = "평화로울 때에는 조심스러움과 겸손함만큼 남자답게 만드는 것이 없다. <b>&nbsp; -윌리엄 셰익스피어-</b>";
+            day_msg[3] = "전쟁은 평화의 문제로부터의 비겁한 도망이다. <b>&nbsp; -토마스 만-</b>";
+            day_msg[4] = "삶은 즐겁다. 죽음은 평화롭다. 골칫거리는 바로 그 중간점이다. <b>&nbsp; -아이작 아시모프-</b>";
+            day_msg[5] = "우리는 평화롭게 살기 위해 전쟁을 치른다. <b>&nbsp; -아리스토 텔레스-</b>";
+            day_msg[6] = "나는 신과 평화롭게 지낸다. 다만 인간과 갈등이 있을 뿐이다. <b>&nbsp; -찰리 채플린-</b>";
+            day_msg[7] = "평화로 가는 길은 없다. 평화가 길이다. <b>&nbsp; -마하트마 간디-</b>";
+            day_msg[8] = "문화의 가치를 소중히 하는 사람이라면 평화주의자가 아닐 리 없다. <b>&nbsp; -알버트 아인슈타인-</b>";
+            day_msg[9] = "평화를 원한다면, 싸움을 멈춰라. 마음의 평화를 원한다면, 자신의 생각과의 싸움을 그치라. <b>&nbsp; -피터 맥윌리엄스-</b>";
+            day_msg[10] = "내가 확신하는 한 가지는 신체가 아닌 (마음의) 평화가 치유의 척도라는 것이다. <b>&nbsp; -조지 멜턴-</b>";
+            day_msg[11] = "평화는 무력으로 유지될 수 없다. 오직 이해를 통해 유지될 수 있다. <b>&nbsp; -알버트 아인슈타인-</b>";
+            day_msg[12] = "평화는 전쟁의 위험으로부터 자유로운 고유의 영예와 영광을 가지지 않던가? <b>&nbsp; -시라쿠사의 헤르모크라테스-</b>";
+            day_msg[13] = "나는 합의를 거친 평화를 원치 않는다. 나는 평화를 가져오는 합의를 원한다. <b>&nbsp; -헬렌 켈러-</b>";
+            day_msg[14] = "나는 기쁨을 지속적인 안녕감과 내적 평화, 즉 중요한 것과 연결되어 있는 느낌이라 정의한다. <b>&nbsp; -오프라 윈프러-</b>";
+            day_msg[15] = "천국의 평화란 진정 정의롭고 자비로운 전쟁에서 칼을 드는 자들의 것이다. <b>&nbsp; -윌리엄 셰익스피어-</b>";
+            day_msg[16] = "자유와 평화는 분리될 수 없다. 자유가 없다면 그 누구도 평화로울 수 없기 때문이다. <b>&nbsp; -말콤 엑스-</b>";
+            day_msg[17] = "평화를 가져오고 싶거든 친구에게 말하지 말고 적에게 말하라. <b>&nbsp; -모세 다얀-</b>";
+            day_msg[18] = "우리는 평화를 찾을 것이다. 천사의 소리를 들을 것이며, 다이아몬드로 빛나는 하늘을 볼 것이다. <b>&nbsp; -안톤 체홉-</b>";
+            day_msg[19] = "평화는 전쟁이 없는 상태가 아니라 강인한 성격에서 비롯된 미덕이다. <b>&nbsp; -바뤼흐 스피노자-</b>";
+            day_msg[20] = "평화는 결코 폭탄 투하에서 비롯된 적이 없다. 진정한 평화는 깨달음 그리고 사람들이 신성한 방식으로 더 많이 행동하도록 교육하는 것에서 온다. <b>&nbsp; -칼로스 산타나-</b>";
 
-            var random_num = Math.floor(Math.random()*5);
+            var random_num = Math.floor(Math.random()*21);
             document.write(day_msg[random_num]);
         
         </script>
         <br><br>
     </fieldset>
+    </div>
 </body>
 
 
-{% endblock %}
+</header>
+</body>
+</html>
+{% comment %} {% endblock %} {% endcomment %}

@@ -21,9 +21,13 @@ def home(request):
     loves = Love.objects.all()
     incidents = Incident.objects.all()
     politics = Politics.objects.all()
+    blog_dic = {}
     blog_title =[]
+    love_dic = {}
     love_title = []
+    incident_dic = {}
     incident_title = []
+    politic_dic = {}
     politic_title = []
     blog_count =[]
     love_count = []
@@ -32,23 +36,39 @@ def home(request):
     for blog in blogs:
         for refute in refutes:
             if refute.password == blog.password:
-                blog_title.append(blog.title)
-                blog_count.append(blog.like_count + refute.like_count)
+                blog_dic[blog.title] = blog.like_count + refute.like_count
+    sorted_blog = sorted(blog_dic.items(), key =(lambda x: x[1]), reverse = True)
+
+    for (key, val) in sorted_blog:
+        blog_title.append(key)
+        blog_count.append(val)
+
     for love in loves:
         for refute in refutes:
             if refute.password == love.password:
-                blog_title.append(love.title)
-                blog_count.append(love.like_count + refute.like_count)
+                love_dic[love.title] = love.like_count + refute.like_count
+    sorted_love = sorted(love_dic.items(), key =(lambda x: x[1]), reverse = True)
+    for (key, val) in sorted_love:
+        love_title.append(key)
+        love_count.append(val)
+
     for incident in incidents:
         for refute in refutes:
             if refute.password == incident.password:
-                blog_title.append(incident.title)
-                blog_count.append(incident.like_count + refute.like_count)
+                incident_dic[incident.title] = incident.like_count + refute.like_count
+    sorted_incident = sorted(incident_dic.items(), key =(lambda x: x[1]), reverse = True)
+    for (key, val) in sorted_incident:
+        incident_title.append(key)
+        incident_count.append(val)
+
     for politic in politics:
         for refute in refutes:
             if refute.password == politic.password:
-                blog_title.append(politic.title)
-                blog_count.append(politic.like_count + refute.like_count)
+                politic_dic[politic.title] = politic.like_count + refute.like_count
+    sorted_politic = sorted(politic_dic.items(), key =(lambda x: x[1]), reverse = True)
+    for (key, val) in sorted_politic:
+        politic_title.append(key)
+        politic_count.append(val)
     return render(request,'home.html', {'blog_title':blog_title, 'love_title':love_title,'incident_title':incident_title,'politic_title':politic_title, 'blog_count':blog_count,'love_count':love_count,'incident_count':incident_count,'politic_count':politic_count})
 
 def index1(request): #맨처음 화면 띄워줌
@@ -88,7 +108,9 @@ def love(request):
     paginator = Paginator(loves_list,8)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
-    return render(request,'love.html',{'loves' : loves,'posts':posts})
+
+
+    return render(request,'love.html',{'loves' : loves,'posts':posts })
 
 def politics(request):
     politics = Politics.objects
@@ -171,15 +193,18 @@ def detail(request,blog_id):
 
 def love_detail(request,love_id):
     love_detail = get_object_or_404(Love,pk = love_id)
-    return render(request,'love_detail.html',{'love':love_detail})
+    refutes_list = Refute.objects.all()
+    return render(request,'love_detail.html',{'love':love_detail, 'refute':refutes_list})
 
 def incident_detail(request,incident_id):
     incident_detail = get_object_or_404(Incident,pk = incident_id)
-    return render(request,'incident_detail.html',{'incident':incident_detail})
+    refutes_list = Refute.objects.all()
+    return render(request,'incident_detail.html',{'incident':incident_detail,'refute':refutes_list})
 
 def politics_detail(request,politics_id):
     politics_detail = get_object_or_404(Politics,pk = politics_id)
-    return render(request,'politics_detail.html',{'politics':politics_detail})
+    refutes_list = Refute.objects.all()
+    return render(request,'politics_detail.html',{'politics':politics_detail,'refute':refutes_list})
 
 @login_required
 def post_like_toggle(request, blog_id):

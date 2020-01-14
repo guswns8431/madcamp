@@ -1,42 +1,54 @@
-{% extends "base.html" %}
+{% comment %} {% extends "base.html" %}
 
 
 
-{% block contents %}
-
+{% block contents %} {% endcomment %}
+{% load static %}
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>쌈닭 - 당신의 싸움을 응원합니다</title>
+    <link rel="stylesheet" href="{% static 'index_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  </head>
+  <body>
+  <header>
+    <div class="wrapper">
+      <div class="logo">
+        <img src="{% static 'logo.png'%}" alt="로고">
+      </div>
+      <ul class = "nav-area">
+        <li><a>{{user.username}}</a></li>
+        <li><a href="{%url 'login'%}">로그아웃</a>
+        <li><a href="{%url 'home'%}">홈</a></li>
+        <li><a href="{%url 'board'%}">일상/잡담</a></li>
+        <li><a href="{%url 'love'%}">연애</a></li>
+        <li><a href="{%url 'politics'%}">정치와 사회</a></li>
+        <li><a href="{%url 'incident'%}">사건/사고</a></li>
+        <li><a href="{%url 'newpost'%}">싸우러가기</a></li>
+      </ul>
+    </div>
+    <div class="container-fluid">
 {% for love in posts %} 
 <!--card 형식을 위한 레이아웃-->
-<div class="container-fluid">
-  <div class="row">
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">{{love.title}}</h1>
-      </div>
-      <div class="card" style="width: 100rem;">
-        <div class="card-body">
-          <h6 class="card-subtitle mb-2 text-muted">{{love.pub_date}}</h6>
-          <p class="card-text">{{love.summary}}</p>
-          <a href="{%url 'love_detail' love.id%}" class="card-link">응원하러 가기</a>
+<div class="animated rotateInDownLeft">
+          <div class="col-md-3 col-sm-3 col-xs-6"> <a href="{%url 'love_detail' love.id%}" class="btn btn-sm animated-button victoria-one">{{love.title}}<br>{{love.pub_date}}</a></div> 
         </div>
-      </div>
-    </main>
-  </div>
-</div>
-{%endfor%}
-<div class = "container">
-{%if posts.has_previous%}
-<a href="?page=1">First</a>
-<a href="?page={{posts.previous_page_number}}">Previous</a>
-{%endif%}
-<span>{{posts.number}}</span>
-<span>of</span>
-<span>{{posts.paginator.num_pages}}</span>
+      {%endfor%}
+      {%if posts.has_previous%}
+        <a href="?page=1">First</a>
+        <a href="?page={{posts.previous_page_number}}">Previous</a>
+      {%endif%}
+      <span>{{posts.number}}</span>
+      <span>of</span>
+      <span>{{posts.paginator.num_pages}}</span>
 
-{%if posts.has_next%}
-<a href="?page={{posts.next_page_number}}">Next</a>
-<a href="?page={{posts.paginator.num_pages}}">Last</a>
-{%endif%}
-</div>
+      {%if posts.has_next%}
+        <a href="?page={{posts.next_page_number}}">Next</a>
+        <a href="?page={{posts.paginator.num_pages}}">Last</a>
+      {%endif%}
+    </div>
+  </header>
 
-
-{% endblock %}
+{% comment %} {% endblock %} {% endcomment %}
