@@ -21,17 +21,19 @@
         <div class="logo">
             <img src="{% static 'logo.png'%}" alt="로고">
         </div>
+        <div class="animated rollIn">
         <ul class = "nav-area">
+        
           <li><a>{{user.username}}</a></li>
-          <li><a href="{%url 'login'%}">로그아웃</a>
+            <li><a href="{%url 'login'%}">로그아웃</a></li>
           <li><a href="{%url 'home'%}">홈</a></li>
           <li><a href="{%url 'board'%}">일상/잡담</a></li>
           <li><a href="{%url 'love'%}">연애</a></li>
           <li><a href="{%url 'politics'%}">정치와 사회</a></li>
           <li><a href="{%url 'incident'%}">사건/사고</a></li>
           <li><a href="{%url 'newpost'%}">싸우러가기</a></li>
-
         </ul>
+        </div>
     </div>
     <div class="wrap">
 <h1>금주의 싸움</h1>

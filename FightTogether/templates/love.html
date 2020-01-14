@@ -18,6 +18,7 @@
       <div class="logo">
         <img src="{% static 'logo.png'%}" alt="로고">
       </div>
+      <div class="animated zoomInLeft">
       <ul class = "nav-area">
         <li><a>{{user.username}}</a></li>
         <li><a href="{%url 'login'%}">로그아웃</a>
@@ -28,11 +29,12 @@
         <li><a href="{%url 'incident'%}">사건/사고</a></li>
         <li><a href="{%url 'newpost'%}">싸우러가기</a></li>
       </ul>
+      </div>
     </div>
     <div class="container-fluid">
 {% for love in posts %} 
 <!--card 형식을 위한 레이아웃-->
-<div class="animated rotateInDownLeft">
+<div class="animated flipInX">
           <div class="col-md-3 col-sm-3 col-xs-6"> <a href="{%url 'love_detail' love.id%}" class="btn btn-sm animated-button victoria-one">{{love.title}}<br>{{love.pub_date}}</a></div> 
         </div>
       {%endfor%}

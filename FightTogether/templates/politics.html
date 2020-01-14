@@ -18,6 +18,7 @@
       <div class="logo">
         <img src="{% static 'logo.png'%}" alt="로고">
       </div>
+      <div class="animated flipInY">
       <ul class = "nav-area">
         <li><a>{{user.username}}</a></li>
         <li><a href="{%url 'login'%}">로그아웃</a>
@@ -28,10 +29,11 @@
         <li><a href="{%url 'incident'%}">사건/사고</a></li>
         <li><a href="{%url 'newpost'%}">싸우러가기</a></li>
       </ul>
+      </div>
     </div>
     <div class="container-fluid">
 {% for politics in posts %}
-        <div class="animated rotateInDownLeft">
+        <div class="animated fadeInUpBig">
           <div class="col-md-3 col-sm-3 col-xs-6"> <a href="{%url 'politics_detail' politics.id%}" class="btn btn-sm animated-button victoria-one">{{politics.title}}<br>{{politics.pub_date}}</a></div> 
         </div>
       {%endfor%}

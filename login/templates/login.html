@@ -18,13 +18,21 @@
         </header>
         <form class="box" action="{% url 'login' %}" method="POST">
         {% csrf_token %}
-        <div class="animated rotateInDownLeft">
+        <div class="animated flip">
           <h1>당신을 응원합니다</h1>
+         </div>
+        <div class="animated flipInY">
           <input type="text" name="username" id="username" placeholder="아이디" required>
+        </div>
+        <div class="animated flipInX">
           <input type="password" name="password" id="inputPassword" placeholder="비밀번호" required>
+        </div>
+        <div class="animated slideInUp">
           <input type="submit" name="" value="싸움터로">
-          <a href="{% url 'signup' %}">회원가입</a>  
-          </div>  
+        </div>
+        <div class="animated zoomIn">
+          <a href="{% url 'signup' %}">회원가입</a>
+        </div>  
         </form>
         
     </body>
