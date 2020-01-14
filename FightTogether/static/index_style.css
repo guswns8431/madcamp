@@ -7,6 +7,42 @@
     margin:auto;
 }
 
+
+.post{
+	width: 500px;
+    height: 400px;
+    color:#fff;
+    top:400px;
+    left:350px;
+    padding: 35px 30px;
+	margin-bottom: 20px;
+	margin-left: 10px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-shadow: 8px 8px 50px -15px #ecf0f1;
+
+}
+.post a{
+	color:#fff
+}
+.refute{
+	width: 500px;
+    height: 400px;
+    color:#fff;
+	top:400px;
+	right:-200px;
+    padding: 35px 30px;
+	margin-bottom: 20px;
+	margin-right: 10px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-shadow: 8px 8px 50px -15px #ecf0f1;
+
+}
+.refute a{
+	color:#fff
+}
+
 .logo img{
     width: 100px;
     float: left;
@@ -87,7 +123,7 @@ header{
     color:#fff;
     top:50%;
     left: 50%;
-    padding: 60px 30px;
+    padding: 10px 30px;
     position: absolute;
     transform: translate(-50%,-50%);
 }

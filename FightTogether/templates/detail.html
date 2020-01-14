@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% comment %} {% extends "base.html" %}
 
 {% block contents %}
 
@@ -55,17 +55,94 @@
 </script>
 <noscript>라이브리 댓글 작성을 위해 JavaScript를 활성화 해주세요</noscript>
 </div> 
-<!-- 시티 설치 코드 끝 -->
-{% comment %} <!--댓글기능-->
-<div id="disqus_thread"></div>
-<script>
-(function() { 
-var d = document, s = d.createElement('script');
-s.src = 'https://ssamdak.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> {% endcomment %}
+{% endblock %} {% endcomment %}
 
-{% endblock %}
+{% load static %}
+<!doctype html>
+<html lang="ko">
+    <head>
+    <meta charset="utf-8">
+    <title>쌈닭 - 당신의 싸움을 응원합니다</title>
+    <link rel="stylesheet" href="{% static 'index_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  </head>
+  <body>
+  <header>
+    <div class="wrapper">
+      <div class="logo">
+        <img src="{% static 'logo.png'%}" alt="로고">
+      </div>
+      <ul class = "nav-area">
+        <li><a>{{user.username}}</a></li>
+        <li><a href="{%url 'login'%}">로그아웃</a>
+        <li><a href="{%url 'home'%}">홈</a></li>
+        <li><a href="{%url 'board'%}">일상/잡담</a></li>
+        <li><a href="{%url 'love'%}">연애</a></li>
+        <li><a href="{%url 'politics'%}">정치와 사회</a></li>
+        <li><a href="{%url 'incident'%}">사건/사고</a></li>
+        <li><a href="{%url 'newpost'%}">싸우러가기</a></li>
+      </ul>
+    </div>
+    <h1>싸움터</h1>
+<br><br>
+<div class="post">
+            <h1> 제목 : {{blog.title}}</h1>
+            <p> 작성 날짜 : {{blog.pub_date}}</p>
+            <p> 내용 : {{blog.body}}</p>
+            <p>좋아요 수 : {{blog.like_count}}</p>
+            <br><br><br><br><br><br><br><br><br><br><br>
+            <a href="{% url 'post_like_toggle' blog.id %}">
+                {% if blog in user.profile.like_posts.all %}
+                    취소
+                {% else %}
+                    좋아요
+                {% endif %}
+            </a>
+            <br><br>
+            <a href = "{% url 'refute' %}" class = "button">반박하기 </a>
+
+            </div>
+            <div class="refute">
+            {% for refute1 in refute %}
+            {% if refute1.password == blog.password%}
+                <h1> 제목 : {{refute1.title}}</h1>
+                <p> 작성 날짜 : {{refute1.pub_date}}</p>
+                <p> 내용 : {{refute1.body}}</p>
+                <p>좋아요 수 : {{refute1.like_count}}</p>
+                <a href="{% url 'post_like_toggle_refute' refute1.id %}">
+                    {% if refute1 in user.profile.like_posts_refute.all %}
+                        취소
+                    {% else %}
+                        좋아요
+                    {% endif %}
+                </a>
+            {% endif %}
+            {% endfor%}
+            </div>
+</body>
+</header>
+
+
+<!-- 라이브리 시티 설치 코드 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80ODI1Ny8yNDc1Mw==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>라이브리 댓글 작성을 위해 JavaScript를 활성화 해주세요</noscript>
+</div> 
+
+  
+
+    
+    
+</html>

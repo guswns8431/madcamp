@@ -33,39 +33,39 @@
         </ul>
     </div>
     <div class="wrap">
-<h1>금주의 싸움 순위</h1>
-{% for blog in blog_title%}
-<div>{{blog}}</div>
-{% endfor%}
-<p>이름</p>
-{% for blogcount in blog_count%}
-<div>{{blogcount}}</div>
-{% endfor%}
-<p>숫자</p>
-{% for love in love_title%}
-<div>{{love}}</div>
-{% endfor%}
-<p>이름</p>
-{% for lovecount in love_count%}
-<div>{{lovecount}}</div>
-{% endfor%}
-<p>숫자</p>
-{% for incident in incident_title%}
-<div>{{incident}}</div>
-{% endfor%}
-<p>이름</p>
-{% for incount in incident_count%}
-<div>{{incount}}</div>
-{% endfor%}
-<p>숫자</p>
-{% for politic in politic_title%}
-<div>{{politic}}</div>
-{% endfor%}
-<p>이름</p>
-{% for polcount in politic_count%}
-<div>{{polcount}}</div>
-{% endfor%}
-<p>숫자</p>
+<h1>금주의 싸움</h1>
+
+<h1>일상/잡담</h1>
+{% if blog_id != -1%}
+<a href="{%url 'detail' blog_id%}" class="btn btn-sm animated-button victoria-one">{{blog_title}}</a>
+{% else %}
+<a class="btn btn-sm animated-button victoria-one">{{blog_title}}</a>
+{% endif %}
+
+
+
+<h1>연애</h1>
+{% if love_id != -1%}
+<a href="{%url 'love_detail' love_id%}" class="btn btn-sm animated-button victoria-one">{{love_title}}</a>
+{% else %}
+<a class="btn btn-sm animated-button victoria-one">{{love_title}}</a>
+{% endif %}
+
+
+<h1>정치와 사회</h1>
+{% if politic_id != -1%}
+<a href="{%url 'politic_detail' politic_id%}" class="btn btn-sm animated-button victoria-one">{{politic_title}}</a>
+{% else%}
+<a class="btn btn-sm animated-button victoria-one">{{politic_title}}</a>
+{% endif %}
+
+<h1>사건/사고</h1>
+{% if incident_id != -1%}
+<a href="{%url 'incident_detail' incident_id%}" class="btn btn-sm animated-button victoria-one">{{incident_title}}</a>
+{% else%}
+<a class="btn btn-sm animated-button victoria-one">{{incident_title}}</a>
+{% endif %}
+
     <fieldset>
         <legend>
             <b>

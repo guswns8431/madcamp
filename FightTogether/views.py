@@ -36,7 +36,9 @@ def home(request):
     for blog in blogs:
         for refute in refutes:
             if refute.password == blog.password:
-                blog_dic[blog.title] = blog.like_count + refute.like_count
+                blog_dic[blog] = blog.like_count + refute.like_count
+    if len(blog_dic) == 0:
+        blog_dic["없습니다."] = 0
     sorted_blog = sorted(blog_dic.items(), key =(lambda x: x[1]), reverse = True)
 
     for (key, val) in sorted_blog:
@@ -46,7 +48,9 @@ def home(request):
     for love in loves:
         for refute in refutes:
             if refute.password == love.password:
-                love_dic[love.title] = love.like_count + refute.like_count
+                love_dic[love] = love.like_count + refute.like_count
+    if len(love_dic) == 0:
+        love_dic["없습니다."] = 0
     sorted_love = sorted(love_dic.items(), key =(lambda x: x[1]), reverse = True)
     for (key, val) in sorted_love:
         love_title.append(key)
@@ -55,7 +59,9 @@ def home(request):
     for incident in incidents:
         for refute in refutes:
             if refute.password == incident.password:
-                incident_dic[incident.title] = incident.like_count + refute.like_count
+                incident_dic[incident] = incident.like_count + refute.like_count
+    if len(incident_dic) == 0:
+        incident_dic["없습니다."] = 0
     sorted_incident = sorted(incident_dic.items(), key =(lambda x: x[1]), reverse = True)
     for (key, val) in sorted_incident:
         incident_title.append(key)
@@ -64,12 +70,40 @@ def home(request):
     for politic in politics:
         for refute in refutes:
             if refute.password == politic.password:
-                politic_dic[politic.title] = politic.like_count + refute.like_count
+                politic_dic[politic] = politic.like_count + refute.like_count
+    if len(politic_dic) == 0:
+        politic_dic["없습니다."] = 0
     sorted_politic = sorted(politic_dic.items(), key =(lambda x: x[1]), reverse = True)
     for (key, val) in sorted_politic:
         politic_title.append(key)
         politic_count.append(val)
-    return render(request,'home.html', {'blog_title':blog_title, 'love_title':love_title,'incident_title':incident_title,'politic_title':politic_title, 'blog_count':blog_count,'love_count':love_count,'incident_count':incident_count,'politic_count':politic_count})
+
+    
+    if not (blog_title[0] == "없습니다.") :
+        blog_first = blog_title[0].title
+        blog_id = blog_title[0].id
+    else:
+        blog_first = blog_title[0]
+        blog_id = -1
+    if not (love_title[0] == "없습니다.") :
+        love_first = love_title[0].title
+        love_id = love_title[0].id
+    else:
+        love_first = love_title[0]
+        love_id = -1
+    if not (incident_title[0] == "없습니다.") :
+        incident_first = incident_title[0].title
+        incident_id = incident_title[0].id
+    else:
+        incident_first = incident_title[0]
+        incident_id = -1
+    if not (politic_title[0] == "없습니다.") :
+        politic_first = politic_title[0].title
+        politic_id = politic_title[0].id
+    else:
+        politic_first = politic_title[0]
+        politic_id = -1
+    return render(request,'home.html', {'blog_title':blog_first, 'love_title':love_first,'incident_title':incident_first,'politic_title':politic_first, 'blog_id':blog_id,'love_id':love_id,'incident_id':incident_id,'politic_id':politic_id})
 
 def index1(request): #맨처음 화면 띄워줌
     return render(request,'index1.html')
@@ -79,7 +113,7 @@ def board(request):
     #블로그 모든 글들을 대상으로
     blog_list = Blog.objects.all()
     #블로그 객체 8 개를 한 페이지로 자르기
-    paginator = Paginator(blog_list,8)
+    paginator = Paginator(blog_list,6)
     #request된 페이지가 뭔지 알아낸다 (request페이지를 변수에 담는다)
     page = request.GET.get('page')
     #request되 페이지를 얻어온 뒤 return
