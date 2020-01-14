@@ -54,7 +54,7 @@
 
 <h1>정치와 사회</h1>
 {% if politic_id != -1%}
-<a href="{%url 'politic_detail' politic_id%}" class="btn btn-sm animated-button victoria-one">{{politic_title}}</a>
+<a href="{%url 'politics_detail' politic_id%}" class="btn btn-sm animated-button victoria-one">{{politic_title}}</a>
 {% else%}
 <a class="btn btn-sm animated-button victoria-one">{{politic_title}}</a>
 {% endif %}
