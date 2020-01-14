@@ -330,3 +330,6 @@ def post_like_toggle_refute(request, refute_id):
         post.save()
 
     return redirect('home')
+
+def donation(request):
+    return render(request,'donation.html')

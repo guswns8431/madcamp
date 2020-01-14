@@ -22,7 +22,7 @@
         </div>
         <ul class = "nav-area">
           <li><a>{{user.username}}</a></li>
-          <li><a href="{%url 'login'%}">로그아웃</a>/li>
+          <li><a href="{%url 'login'%}">로그아웃</a>
           <li><a href="{%url 'home'%}">홈</a></li>
           <li><a href="{%url 'board'%}">일상/잡담</a></li>
           <li><a href="{%url 'love'%}">연애</a></li>
@@ -65,6 +65,8 @@
 {% else%}
 <a class="btn btn-sm animated-button victoria-one">{{incident_title}}</a>
 {% endif %}
+<a href="{%url 'donation' %}" class="btn btn-sm animated-button victoria-one" style="color:gold; border-color:gold"> $쌈닭에 1000원 후원하기$</a>
+
 
     <fieldset>
         <legend>

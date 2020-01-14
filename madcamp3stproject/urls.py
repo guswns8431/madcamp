@@ -41,5 +41,6 @@ urlpatterns = [
     path('love/like/<int:love_id>', FightTogether.views.post_like_toggle2, name="post_like_toggle2"),
     path('politics/like/<int:politics_id>', FightTogether.views.post_like_toggle3, name="post_like_toggle3"),
     path('refute/like/<int:refute_id>', FightTogether.views.post_like_toggle_refute, name="post_like_toggle_refute"),
+    path('donation/',FightTogether.views.donation,name="donation"),
     
 ]
