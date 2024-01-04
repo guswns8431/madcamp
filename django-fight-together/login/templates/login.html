@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>쌈닭 - 당신의 싸움을 응원합니다</title>
+        <link rel="stylesheet" href="{% static 'login_style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    </head>
+    <body>
+        <header>
+        <div class="wrapper">
+            <div class="logo">
+                <img src="{% static 'logo.png'%}" alt="로고">
+            </div>
+        </div>
+        </header>
+        <form class="box" action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <div class="animated flip">
+          <h1>당신을 응원합니다</h1>
+         </div>
+        <div class="animated flipInY">
+          <input type="text" name="username" id="username" placeholder="아이디" required>
+        </div>
+        <div class="animated flipInX">
+          <input type="password" name="password" id="inputPassword" placeholder="비밀번호" required>
+        </div>
+        <div class="animated slideInUp">
+          <input type="submit" name="" value="싸움터로">
+        </div>
+        <div class="animated zoomIn">
+          <a href="{% url 'signup' %}">회원가입</a>
+        </div>  
+        </form>
+        
+    </body>
+</html>

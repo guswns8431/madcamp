@@ -1,0 +1,54 @@
+{% comment %} {% extends "base.html" %}
+
+{% block contents %} {% endcomment %}
+
+{% load static %}
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>쌈닭 - 당신의 싸움을 응원합니다</title>
+    <link rel="stylesheet" href="{% static 'index_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  </head>
+  <body>
+  <header>
+    <div class="wrapper">
+      <div class="logo">
+        <img src="{% static 'logo.png'%}" alt="로고">
+      </div>
+      <div class="animated flipInY">
+      <ul class = "nav-area">
+        <li><a>{{user.username}}</a></li>
+        <li><a href="{%url 'login'%}">로그아웃</a>
+        <li><a href="{%url 'home'%}">홈</a></li>
+        <li><a href="{%url 'board'%}">일상/잡담</a></li>
+        <li><a href="{%url 'love'%}">연애</a></li>
+        <li><a href="{%url 'politics'%}">정치와 사회</a></li>
+        <li><a href="{%url 'incident'%}">사건/사고</a></li>
+        <li><a href="{%url 'newpost'%}">싸우러가기</a></li>
+      </ul>
+      </div>
+    </div>
+    <div class="container-fluid">
+      {% for blog in posts %}
+        <div class="animated rotateInDownLeft">
+          <div class="col-md-3 col-sm-3 col-xs-6"> <a href="{%url 'detail' blog.id%}" class="btn btn-sm animated-button victoria-one">{{blog.title}}<br>{{blog.pub_date}}</a></div> 
+        </div>
+      {%endfor%}
+      {%if posts.has_previous%}
+        <a href="?page=1">First</a>
+        <a href="?page={{posts.previous_page_number}}">Previous</a>
+      {%endif%}
+      <span>{{posts.number}}</span>
+      <span>of</span>
+      <span>{{posts.paginator.num_pages}}</span>
+
+      {%if posts.has_next%}
+        <a href="?page={{posts.next_page_number}}">Next</a>
+        <a href="?page={{posts.paginator.num_pages}}">Last</a>
+      {%endif%}
+    </div>
+  </header>
+
+{% comment %} {% endblock %} {% endcomment %}

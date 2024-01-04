@@ -1,0 +1,88 @@
+{% load static %}
+<!doctype html>
+<html lang="ko">
+    <head>
+    <meta charset="utf-8">
+    <title>쌈닭 - 당신의 싸움을 응원합니다</title>
+    <link rel="stylesheet" href="{% static 'index_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  </head>
+  <body>
+  <header>
+    <div class="wrapper">
+      <div class="logo">
+        <img src="{% static 'logo.png'%}" alt="로고">
+      </div>
+      <ul class = "nav-area">
+        <li><a>{{user.username}}</a></li>
+        <li><a href="{%url 'login'%}">로그아웃</a>
+        <li><a href="{%url 'home'%}">홈</a></li>
+        <li><a href="{%url 'board'%}">일상/잡담</a></li>
+        <li><a href="{%url 'love'%}">연애</a></li>
+        <li><a href="{%url 'politics'%}">정치와 사회</a></li>
+        <li><a href="{%url 'incident'%}">사건/사고</a></li>
+        <li><a href="{%url 'newpost'%}">싸우러가기</a></li>
+      </ul>
+    </div>
+<br><br>
+<div class="animated lightSpeedIn">
+<div class="post">
+<h1>{{incident.title}}</h1>
+<p>{{incident.pub_date}}<br><br></p>
+<p>{{incident.body}}</p>
+<a href="{% url 'post_like_toggle1' incident.id %}" class="btn btn-sm animated-button victoria-one">
+    {% if incident in user.profile.like_posts1.all %}
+        취소
+    {% else %}
+        좋아요
+    {% endif %}
+    <br>좋아요 수 : {{incident.like_count}}
+</a>
+<br><br>
+<a href = "{% url 'refute' %}" class = "btn btn-sm animated-button victoria-one">반박하기 </a>
+</div>
+</div>
+            <div class="animated rotateInDownLeft">
+            <div class="refute">
+{% for refute1 in refute %}
+{% if refute1.password == incident.password%}
+    <h1>{{refute1.title}}</h1>
+    <p>{{refute1.pub_date}}<br><br></p>
+    <p>{{refute1.body}}</p>
+    <br><br><br><br><br><br>
+    
+    <a href="{% url 'post_like_toggle_refute' refute1.id %}" class = "btn-sm animated-button victoria-one">
+        {% if refute1 in user.profile.like_posts_refute.all %}
+            취소
+        {% else %}
+            좋아요
+        {% endif %}
+        <br>좋아요 수 : {{refute1.like_count}}
+    </a>
+
+    
+{% endif %}
+{% endfor%}
+</div>
+            </div>
+</body>
+</header>
+
+
+<!-- 라이브리 시티 설치 코드 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80ODI1Ny8yNDc1Mw==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>라이브리 댓글 작성을 위해 JavaScript를 활성화 해주세요</noscript>
+</div>         
