@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity1">
+
+    <TabHost
+        android:id="@+id/tabHost1"
+        android:layout_width="0dp"
+        android:layout_height="733dp"
+        app:layout_constraintBaseline_toBaselineOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/tab1"
+                    android:background="#FFFFFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn_address"
+                        android:layout_width="300dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="50dp"
+                        android:text="주소록 가져오기"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/buttonshape"
+                        android:shadowColor="#A8A8A8"
+                        android:shadowDx="0"
+                        android:shadowDy="0"
+                        android:shadowRadius="5"/>
+
+
+<!--                    <Button-->
+<!--                        android:id="@+id/button"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:onClick="OnClickHandler"-->
+<!--                        android:text="전화번호 추가"-->
+<!--                        android:textColor="#FFFFFF"-->
+<!--                        android:textSize="18sp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:background="@drawable/buttonshape"-->
+<!--                        android:shadowColor="#A8A8A8"-->
+<!--                        android:shadowDx="0"-->
+<!--                        android:shadowDy="0"-->
+<!--                        android:shadowRadius="5"/>-->
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="vertical"
+                        android:layout_marginBottom="30dp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/tab2"
+                    android:background="#FFFFFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/photo_view"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:text="갤러리에서 사진 가져오기"
+                        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+                    <GridView
+                        android:id="@+id/gridViewImages"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:numColumns="3"
+                        android:horizontalSpacing="10dp"
+                        android:verticalSpacing="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginBottom="30dp">
+                    </GridView>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/tab3"
+                    android:background="#FFFFFF"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+
+                    <Button
+                        android:id="@+id/btn_random"
+                        android:gravity="center"
+                        android:layout_margin="50dp"
+                        android:text="랜덤추천"
+                        android:layout_width="300dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="50dp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/buttonshape"
+                        android:shadowColor="#A8A8A8"
+                        android:shadowDx="0"
+                        android:shadowDy="0"
+                        android:shadowRadius="5"/>
+
+                    <Button
+                        android:id="@+id/btn_rank"
+                        android:gravity="center"
+                        android:text="순위보기"
+                        android:layout_width="300dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="50dp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/buttonshape"
+                        android:shadowColor="#A8A8A8"
+                        android:shadowDx="0"
+                        android:shadowDy="0"
+                        android:shadowRadius="5"/>
+                </LinearLayout>
+
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
